@@ -21,7 +21,8 @@ namespace JsonOppgave
         public string? Godkjenningstyper { get; set; }
         public int Organisasjonsnummer { get; set; }
         public int Godkjenningsnummer { get; set; }
-
+        public int PostNrFrom { get; set; }
+        public int PostNrTo { get; set; }
 
         public void PrintVerksted()
         {

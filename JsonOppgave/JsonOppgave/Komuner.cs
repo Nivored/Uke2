@@ -11,8 +11,10 @@ namespace JsonOppgave
     {
         public string Navn { get; private set; }
         public int KomuneNr { get; private set; }
+        public int PostNrFra { get; set; }
+        public int PostNrTil { get; set; }
 
-        public static List<Verksted> verkstedList = new List<Verksted>();
+        //public static List<Verksted> verkstedList = new List<Verksted>();
 
         public Komuner(string navn, int komuneNr)
         {

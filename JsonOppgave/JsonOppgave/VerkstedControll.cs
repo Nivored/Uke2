@@ -15,7 +15,7 @@ namespace JsonOppgave
 {
     public class VerkstedControll
     {
-        //public List<Verksted> verkstedList = new List<Verksted>();
+        public List<Verksted> verkstedList = new List<Verksted>();
 
         public List<Komuner> komuneList = new List<Komuner>()
         {
@@ -40,31 +40,42 @@ namespace JsonOppgave
             new Komuner("Finnmark", 19),
         };
 
+        public List<Komuner> KomuneInRange(int postNrFra, int postNrTil)
+        {
+
+            foreach (var verksted in verkstedList) 
+            { 
+                int postnummer = int.Parse(verksted.Postnummer);
+                if (postnummer >= postNrFra && (postnummer <= postNrTil))
+                {
+                    verksted.PrintVerksted();
+                }
+            }
+            return komuneList;
+        }
+
         public VerkstedControll()
         {
             var fileName = $"verkstedfil.json";
             var jsonString = File.ReadAllText(fileName);
-            Komuner.verkstedList = JsonSerializer.Deserialize<List<Verksted>>(jsonString)!;
+            verkstedList = JsonSerializer.Deserialize<List<Verksted>>(jsonString)!;
         }
 
         public void Test()
         {
-
+            var input = Convert.ToInt32(Console.ReadLine());
             foreach (var komune in komuneList)
             {
-                foreach (var verksted in Komuner.verkstedList)
+                if (input == komune.KomuneNr)
                 {
-                    int postnummer = int.Parse(verksted.Postnummer);
-
-                    if (komune.KomuneNr == 1)
-                    {
-                        verksted.PrintVerksted();
-                    }
+                    
                 }
             }
+            if (input == 1)KomuneInRange(0001, 1299);
+            if (input == 2) KomuneInRange(1300, 1499); KomuneInRange(1900, 2099);
         }
 
-        //public void Test()
+        //public void Test() 
         //{
         //    var userInput = Convert.ToInt32(Console.ReadLine());
 
